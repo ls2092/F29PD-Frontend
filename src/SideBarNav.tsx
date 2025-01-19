@@ -1,16 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faLightbulb, faPlug, faClockRotateLeft, faChartLine, faPlus, faUser, faGear } from '@fortawesome/free-solid-svg-icons';
-import Settings from './SettingsPage';
 
 
 
 function SideBarNav() {
 
-    const handleSettingsClick = () => {
-        window.location.href = '/SettingsPage';
-        <Settings />;
-        
-        
+    
+    const navigateToPage = (hash: string) => {
+        window.location.href = hash;
     };
 
     return (
@@ -22,8 +19,10 @@ function SideBarNav() {
 
             <div className="container">
 
-            <div className="sidebar">
-             <FontAwesomeIcon icon={faHome} />
+            <div className="sidebar" id="Home-btn">
+                <button onClick={() => navigateToPage('#Home')}>
+                    <FontAwesomeIcon icon={faHome} />
+                </button>
             </div>
 
             <div className="sidebar">
@@ -38,8 +37,10 @@ function SideBarNav() {
                 <FontAwesomeIcon icon={faChartLine} />
             </div>
 
-            <div className="sidebar">
+            <div className="sidebar" id="suggestions">
+                <button onClick={() => navigateToPage('#Suggestions')}>
                 <FontAwesomeIcon icon={faLightbulb} />
+                </button>
             </div>
 
             <div className="sidebar">
@@ -51,9 +52,9 @@ function SideBarNav() {
             </div>
 
             <div className="sidebar-settings" id="settings-button">
-                <button onClick={handleSettingsClick}>
-                <FontAwesomeIcon icon={faGear} />
-                </button>
+                    <button onClick={() => navigateToPage('#SettingsPage')}>
+                        <FontAwesomeIcon icon={faGear} />
+                    </button>
             </div>
 
             </div>

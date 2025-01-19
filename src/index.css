@@ -1,3 +1,4 @@
+/*main dashboard*/
 .logo {
   align-self: stretch;
   width: 102px;
@@ -34,8 +35,6 @@
   align-items: center;
 }
 
-
-
 .sidebar{
   width: 50px; 
   height: 50px; 
@@ -49,12 +48,26 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+#Home-btn button:hover,
+#suggestions button:hover,
 #settings-button button:hover,
 .sidebar:hover{
   background-color: blue;
   color: white;
 }
 
+#Home-btn button,
+#suggestions button{
+  border-radius: 50%;
+  width: 50px; 
+  height: 50px;
+  border: none;
+  align-items: center;
+  font-size: 24px; 
+  transition: background-color 0.3s ease, color 0.3s ease;
+  justify-content: center; 
+  cursor: pointer;
+}
 
 #settings-button button{
   margin-top: 125px;
@@ -68,7 +81,6 @@
   justify-content: center; 
   cursor: pointer;
 }
-
 
 
 .Family-Container {
@@ -104,7 +116,7 @@
   background-color: blue;
   border-radius: 20px;
   padding: 6px;
-  
+  cursor: pointer;
 }
 
 .view-btn button {
@@ -113,6 +125,7 @@
   color: white;
   background-color: blue;
   border: transparent;
+  cursor: pointer;
 }
 
 
@@ -329,10 +342,11 @@
 
 .arrow-button{
   display: flex;
-  margin-left: 780px;
+  margin-left: 97%;
   align-items: center;
   border: none;
   background-color: white;
+  border-radius: 30px;
   cursor: pointer;
 }
 
@@ -374,4 +388,21 @@
 
 #btns-right:hover {
   color: white;                /* Optional hover effect */
+}
+
+
+.main-headings{
+  display: flex;
+  flex-direction: row;
+  gap: 40%;
+  margin-left: 15%;
+  margin-top: -50.5%;
+  
+}
+
+#energy-saving,
+#security,
+#automation{
+  border: blue;
+  border
 }
