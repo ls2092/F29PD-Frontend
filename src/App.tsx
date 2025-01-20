@@ -37,6 +37,8 @@ function App() {
         return <FamilyMembers />;
       case '#EnergyConsumed':
         return <EnergyConsumed />;
+      default:
+        <SideBarNav />;
     }
   };
 
