@@ -24,7 +24,8 @@ function FamilyMembers() {
                 </div>
 
                 <div className="view-btn">
-                    <FontAwesomeIcon icon={faUser} />
+                    
+                        <FontAwesomeIcon icon={faUser} />
                     <button>View Profile</button>
                 </div>
             </div>
