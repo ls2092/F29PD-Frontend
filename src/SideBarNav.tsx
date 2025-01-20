@@ -12,7 +12,6 @@ function SideBarNav() {
 
     return (
         <>
-            
             <div className="logo">
                 <span className="logo-text">SY<span className="highlight">N</span>C</span>
             </div>
