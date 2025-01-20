@@ -1,19 +1,19 @@
 /*main dashboard*/
 .logo {
   align-self: stretch;
-  width: 102px;
+  width: 4%;
   border-radius: 83px;
   padding: 8px;
   background-color: blue;
   margin-bottom: 10px;
-  margin-left: 16px;
+  margin-left: 0.6%;
   color: rgba(255, 255, 255, 1);
   text-align: center;
   font: 600 32px Plus Jakarta Sans, -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 20px;
 }
 
 .logo-text .highlight {
-  font-weight: 700;
   color: #EA8C00;
 }
 
@@ -23,13 +23,14 @@
 }
 
 .container {
-  width: 120px; 
-  margin-left: 0px;
-  padding: 20px;
-  height: fit-content; 
-  background-color: #EA8C00; 
   display: flex;
   flex-direction: column;
+  width: 4%;
+  height: 4%;
+  height: fit-content;  
+  margin-left: -0.3%;
+  padding: 20px;
+  background-color: #EA8C00; 
   gap: 20px; 
   border-radius: 30px;
   align-items: center;
@@ -37,7 +38,7 @@
 
 .sidebar{
   width: 50px; 
-  height: 50px; 
+  height: 50px;
   border-radius: 50%;
   background-color: white; 
   font-size: 24px; 
@@ -91,12 +92,13 @@
   border: solid blue; /* Add blue border */
   position: fixed;
   bottom: 20px;  /* Position the container at the bottom */
-  right: 20px;   /* Position the container to the right */
+  right: 0.6%;   /* Position the container to the right */
+  top: 65.5%;
   background-color: white;
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 565px;
-  height: 180px;
+  width: 43.5%;
+  height: 26.3%;
 }
 
 .Heading {
@@ -117,10 +119,10 @@
   border-radius: 20px;
   padding: 6px;
   cursor: pointer;
+  
 }
 
 .view-btn button {
-  margin: 0;
   font-size: 14px;
   color: white;
   background-color: blue;
@@ -130,18 +132,19 @@
 
 
 .Energy-Container {
-  position: fixed;   /* Fix the container at the top-right corner */
-  top: 20px;         /* Space from the top */
-  right: 20px;       /* Space from the right */
+  position: absolute;   /* Fix the container at the top-right corner */
+  top: 7px;         /* Space from the top */
+  right: 2px;       /* Space from the right */
   padding: 20px;     
   background-color: white; /* Background color */
   border: solid blue;  /* Optional: Add a border */
   border-radius: 20px;      /* Optional: Rounded corners */
   /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Optional: Shadow */
   z-index: 1000;     /* Ensure it stays above other content */
-  height: 360px;
-  width: 565px;
+  height: 45.65%;
+  width: 43.5%;
   margin-top: 95px;
+  margin-right: 0.5%
 }
 
 .energy {
@@ -285,59 +288,59 @@
   border: solid;
   border-color: blue;
   border-radius: 20px;
-  margin-left: 180px;
+  margin-left: 7.5%;
   margin-top: -660px;
   box-sizing: border-box;
 }
 
-.control-device-container button{
+#turn-on-btn button,
+.control-device-container #turn-on button{
+  display: flex;
+  flex-direction: row;
   border-radius: 50%;
   border: 2px solid blue;
   width: 30px; 
   height: 30px;
-  margin-left: 630px;
-  margin-top: 20px;
+  margin-left: 93%;
+  margin-top: 1.2%;
   transition: background-color 0.3s ease, color 0.3s ease;
   color: blue;
   background-color: white;
-
+  align-items: center;
+  cursor: pointer;
 }
 
-.turn-on{
-  margin-top: 0px;
-}
-
-.control-device-container button:hover{
+.AirQuality #turn-on-btn button:hover,
+.control-device-container #turn-on button:hover{
   color: white;
   background-color: blue;
 }
 
 .AirQuality{
-  height: 215px;
+  display: flex;
+  flex-direction: row;
+  height: 32%;
   width: 685px;
   border: solid;
   border-color: blue;
   border-radius: 20px;
-  margin-top: 320px; 
-  margin-left: -4px;
+  margin-top: 0.5%;
+  margin-left: 7.5%;
   position: fixed;
   display: block;
   box-sizing: border-box;
 }
 
-.AirQuality button{
-
-}
-
 .bar-container{
   display: flex;
+  flex-direction: row;
   border: solid;
   border-color: blue;
   border-radius: 50px;
   margin-top: -450px;
-  margin-left: 170px;
+  margin-left: 7.5%;
   height: 40px;
-  width: 980px;
+  width: 78%;
 }
 
 .arrow-button{
@@ -350,17 +353,11 @@
   cursor: pointer;
 }
 
-.arrow-button:hover{
-  
-}
-
-
 
 .Header {
-       
   background-color: white;     /* Optional background color */
-  margin-top: -110px;
-  margin-left: 175px;
+  margin-top: -6.5%;
+  margin-left: 8%;
 }
 
 
