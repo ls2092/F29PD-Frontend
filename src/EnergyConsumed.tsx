@@ -42,23 +42,21 @@ function EnergyConsumed() {
             </div>
     
             <div className="control-device-container">
-                <p>Air Conditioner</p>
-                <div className="turn-on">
+                
+                <div id="turn-on">
                     <button>
                         <FontAwesomeIcon icon={faPowerOff} />
                     </button>
                 </div>
+            </div>
 
-                <div className="AirQuality">
-                    <p>Air Filter</p>
-                    <div className="turn-on">
+            <div className="AirQuality">
+                    <div id="turn-on-btn">
                         <button>
                             <FontAwesomeIcon icon={faPowerOff}/>
                         </button>
                     </div>
                 </div>
-
-            </div>
 
             <div className="bar-container">
                 
