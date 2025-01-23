@@ -310,11 +310,14 @@
   cursor: pointer;
 }
 
+
 .AirQuality #turn-on-btn button:hover,
 .control-device-container #turn-on button:hover{
   color: white;
   background-color: blue;
 }
+
+
 
 .AirQuality{
   display: flex;
@@ -391,15 +394,138 @@
 .main-headings{
   display: flex;
   flex-direction: row;
-  gap: 40%;
-  margin-left: 15%;
-  margin-top: -50.5%;
+  /*gap: 30%;*/
+  margin-left: 10%;
+  margin-top: -49.5%;
   
 }
 
-#energy-saving,
-#security,
+.main-headings button{
+ background-color: blue;
+ border-radius: 25px;
+ height: 42px;
+ align-items: center;
+ border: none;
+ font-size: 15px;
+ font-weight: bold;
+ cursor: pointer;
+ color: white;
+ transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-headings button:hover{
+  background-color: rgb(86, 86, 253);
+}
+
+.boxes{
+  display: flex;
+  flex-direction: row;
+  /*gap: 12%;*/
+  margin-left: 11%;
+}
+
+.energy-box{
+  border: solid lightgray;
+  border-radius: 25px;
+  height: 680px;
+  width: 600px;
+  margin-top: 20px;
+  margin-left: -4.5%;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.auto-box{
+  border: solid lightgray;
+  border-radius: 25px;
+  height: 680px;
+  width: 600px;
+  margin-top: 20px;
+  margin-left: 20px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.security-box{
+  border: solid lightgray;
+  border-radius: 25px;
+  height: 680px;
+  width: 600px;
+  margin-top: 20px;
+  margin-left: 20px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+#energy-saving{
+  margin-left: 5%;
+  width: 350px;
+  margin-left: 10px;
+}
+
 #automation{
-  border: blue;
-  border
+  margin-left: 9%;
+  width: 350px;
+  
+}
+
+#security{
+  margin-left: 9%;
+  width: 350px;
+  
+}
+
+.sliding-boxes{
+  margin-top: 140%;
+}
+
+/*.Sliding-Container{
+  width: 0%;
+  height: 655px; 
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  padding: 8px;
+  box-sizing: border-box;
+  margin-left: 92%;
+  margin-top: -35px;
+  border-radius: 20px;
+
+}*/
+
+.suggestions-boxes2{
+  display: flex;
+  flex-direction: column;
+  border: solid 2px lightgray;
+  margin-top: 1%;
+  margin-left: 6px;
+  margin-right: 6px;
+  height: 200px;
+  width: 400px;
+  background-color: lightgray;
+  border-radius: 30px;
+}
+
+.suggestions-boxes3{
+  display: flex;
+  flex-direction: column;
+  border: solid 2px lightgray;
+  margin-top: 1%;
+  margin-left: 6px;
+  margin-right: 6px;
+  height: 200px;
+  width: 400px;
+  background-color: lightgray;
+  border-radius: 30px;
+}
+.suggestions-boxes{
+  display: flex;
+  flex-direction: column;
+  border: solid 2px lightgray;
+  margin-top: -140%;
+  margin-left: 6px;
+  margin-right: 6px;
+  height: 200px;
+  width: 400px;
+  background-color: lightgray;
+  border-radius: 30px;
 }
