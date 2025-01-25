@@ -58,9 +58,40 @@ function EnergyConsumed() {
                     <h2>Temprature Control</h2>
                 </div>
 
-               
-                <div className="analytics-container">
-                    <h2>Enery Consumed</h2>
+               <div className="col-container">
+
+                    <div className="analytics-container">
+                        <h2>Enery Consumed</h2>
+                    </div>
+
+                    <div className="family-container">
+                     <h2>Family Members</h2>
+
+                    <div>
+                        <button>
+                            <FontAwesomeIcon icon={faUser}/>
+                            View Profile
+                        </button>
+                    </div>
+
+                    <div>
+                        <button>
+                            <FontAwesomeIcon icon={faUser}/>
+                            View Profile
+                        </button>
+                    </div>
+
+                    <div>
+                        <button>
+                            <FontAwesomeIcon icon={faUser}/>
+                            View Profile
+                        </button>
+                    </div>
+                    
+                
+            </div>
+            
+
                 </div>
 
             <div className="container-AH">
@@ -95,28 +126,7 @@ function EnergyConsumed() {
                 </div>
             </div>
             
-            <div className="family-container">
-                <h2>Family Members</h2>
-                <div className="btn-container">
-                    <button>
-                        <FontAwesomeIcon icon={faUser}/>
-                        View Profile
-                    </button>
-
-                    <button>
-                        <FontAwesomeIcon icon={faUser}/>
-                        View Profile
-                    </button>
-
-                    <button>
-                        <FontAwesomeIcon icon={faUser}/>
-                        View Profile
-                    </button>
-                    
-                </div>
-            </div>
             
-
             </body>
         </>
     );
