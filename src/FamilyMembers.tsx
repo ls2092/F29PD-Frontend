@@ -3,7 +3,7 @@ import {  faUser} from '@fortawesome/free-solid-svg-icons';
 
 
 function FamilyMembers() {
-    return (
+    /*return (
         <>
 
             <div className="Family-Container">
@@ -30,7 +30,7 @@ function FamilyMembers() {
                 </div>
             </div>
         </>
-    );
+    );*/
 }
 
 export default FamilyMembers;

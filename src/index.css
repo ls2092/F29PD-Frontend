@@ -1,4 +1,8 @@
 /*main dashboard*/
+body{
+  background-color: rgb(240, 240, 243);
+
+}
 .logo {
   position: fixed;
   display: flex;
@@ -8,8 +12,8 @@
   border-radius: 5rem;
   padding: 8px;
   background-color: blue;
-  /*margin-bottom: 10px;*/
   margin-left: 0%;
+  /*margin-top: -2%;*/
   color: rgba(255, 255, 255, 1);
   text-align: center;
   font: 600 32px Plus Jakarta Sans, -apple-system, Roboto, Helvetica, sans-serif;
@@ -26,15 +30,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /*width: 4%;
-  height: 4%;
-  height: fit-content;  
-  margin-left: -0.3%;
-  padding: 20px;
-  background-color: #EA8C00; 
-  gap: 20px; 
-  border-radius: 30px;
-  align-items: center;*/
 }
 
 .sidebar{
@@ -74,6 +69,259 @@
   color: #f97316; /* Orange-500 */
 }
 
+
+
+.room-selector-container {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  margin-left: 18vh;
+  margin-top: -1.3vh;
+  border-radius: 1.2em;
+  background-color: rgb(240, 240, 243);
+}
+
+.room-selector-container button{
+  border-radius: 10vh;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.3s, color 0.3s;
+  background-color: #f3f4f6;
+  padding: 0.5rem 1rem;
+}
+
+.arrow-button{
+  padding: 0.5rem;
+  background-color: #f3f4f6; /* Gray-100 */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.room-selector-container button:hover,
+.arrow-button:hover{
+  background-color: #d9dbde;
+}
+
+.Header-btns{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 60rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, color 0.2s;
+  margin-left: 8.9rem;
+  cursor: pointer;
+}
+
+h1{
+  margin-top: -1vh;
+}
+
+
+#bell-btn{
+  background-color: #bfdbfe; /* Blue-100 */
+  margin-right: 1rem;
+  color: #3b82f6;
+  border: none;
+  border-radius: 20px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+#bell-btn:hover{
+  background-color: #93c5fd;
+  color: white;
+}
+
+#edit-btn{
+  background-color: #fecaca; /* Red-100 */
+  margin-right: 1rem;
+  color: #ef4444;
+  border: none;
+  border-radius: 20px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+#edit-btn:hover{
+  background-color: #f87171;
+  color: white;
+}
+
+#info-btn{
+  background-color: #e9d5ff; /* Purple-100 */
+  margin-right: 1rem;
+  color: #a855f7;
+  border: none;
+  border-radius: 20px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+#info-btn:hover{
+  background-color: #d8b4fe;
+  color: white;
+}
+
+
+.temp-container{
+  border: none;
+  width: 41rem;
+  height: 20vh;
+  margin-left: 20vh;
+  margin-top: 3vh;
+  border-radius: 2vh;
+  background-color: white;
+
+}
+
+.temp-container h2{
+  padding: 0.5rem;
+  font-size: 1.3rem;
+}
+
+
+.analytics-container{
+  border: none;
+  border-radius: 2vh;
+  background-color: white;
+  width: 41rem;
+  height: 50vh;
+  margin-left: 108vh;
+  margin-top: -22.5vh ;
+}
+
+.analytics-container h2,
+.family-container h2{
+  padding: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.container-AH{
+  display: flex;
+  flex-direction: row;
+  margin-top: -27vh;
+}
+
+.air-container{
+  border: none;
+  width: 20rem;
+  height: 27vh;
+  border-radius: 2vh;
+  background-color: white;
+  margin-left: 20vh;
+  margin-right: 3vh;
+}
+
+.humidity-container{
+  width: 20rem;
+  height: 27vh;
+  border: none;
+  border-radius: 2vh;
+  background-color: white;
+}
+
+.device-container h2,
+.device-container2 h2,
+.humidity-container h2,
+.air-container h2{
+  padding-left: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.control-devices{
+  display: flex;
+  flex-direction: row;
+  margin-top: 3vh;
+}
+
+.device-container{
+  border: none;
+  width: 20rem;
+  height: 27vh;
+  border-radius: 2vh;
+  background-color: white;
+  margin-left: 20vh;
+  margin-right: 3vh;
+}
+
+.device-container2{
+  width: 20rem;
+  height: 27vh;
+  border: none;
+  border-radius: 2vh;
+  background-color: white;
+}
+
+.content{
+  display: flex;
+  flex-direction: row;
+}
+
+.content button{
+  margin-left: 18vh;
+  border-radius: 2vh;
+  border: none;
+  padding: 0.5rem;
+  font-size: 15px;
+  height: 4vh;
+  align-items: center;
+  margin-top: 2vh;
+  margin-right: 1vh;
+  cursor: pointer;
+}
+
+.content button:hover,
+.btn-container button:hover{
+  color: white;
+  background-color: #d9dbde;
+}
+
+/*.family-container{
+  border: none;
+  width: 41rem;
+  height: vh;
+  margin-left: 108vh;
+  margin-top: -29vh;
+  border-radius: 2vh;
+  background-color: white;
+}
+
+
+
+.btn-container button{
+  width: 7rem;
+  border-radius: 2vh;
+  margin-top: 4vh;
+  margin-bottom: 5px;
+  border: none;
+  padding: 0.5rem;
+  margin-left: 69vh;
+  cursor: pointer;
+}*/
+
 /*#Home-btn button:hover,
 #suggestions button:hover,
 #settings-button button:hover,
@@ -106,7 +354,7 @@
   transition: background-color 0.3s ease, color 0.3s ease;
   justify-content: center; 
   cursor: pointer;
-}*/
+}
 
 
 .Family-Container {
@@ -114,19 +362,19 @@
   flex-direction: column;
   align-items: flex-end; 
   padding: 20px;
-  border: solid blue; /* Add blue border */
+  border: solid blue; /* Add blue border 
   position: fixed;
-  bottom: 20px;  /* Position the container at the bottom */
-  right: 0.6%;   /* Position the container to the right */
+  bottom: 20px;  /* Position the container at the bottom 
+  right: 0.6%;   /* Position the container to the right 
   top: 65.5%;
   background-color: white;
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 43.5%;
   height: 26.3%;
-}
+}*/
 
-.Heading {
+/*.Heading {
   text-align: center; 
   width: 100%;
   margin-bottom: 0px;
@@ -157,15 +405,15 @@
 
 
 .Energy-Container {
-  position: absolute;   /* Fix the container at the top-right corner */
-  top: 7px;         /* Space from the top */
-  right: 2px;       /* Space from the right */
+  position: absolute;   /* Fix the container at the top-right corner 
+  top: 7px;         /* Space from the top 
+  right: 2px;       /* Space from the right 
   padding: 20px;     
-  background-color: white; /* Background color */
-  border: solid blue;  /* Optional: Add a border */
-  border-radius: 20px;      /* Optional: Rounded corners */
-  /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Optional: Shadow */
-  z-index: 1000;     /* Ensure it stays above other content */
+  background-color: white; /* Background color 
+  border: solid blue;  /* Optional: Add a border 
+  border-radius: 20px;      /* Optional: Rounded corners 
+  /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Optional: Shadow 
+  z-index: 1000;     /* Ensure it stays above other content 
   height: 45.65%;
   width: 43.5%;
   margin-top: 95px;
@@ -288,7 +536,7 @@
   padding-bottom: px;
   padding-right: 10px;
   padding-left: 10px;
-  /*padding: 8px 13px;*/
+  /*padding: 8px 13px;
   background-color: blue;
   color: white;
   border: none;
@@ -383,7 +631,7 @@
 
 
 .Header {
-  background-color: white;     /* Optional background color */
+  background-color: white;     /* Optional background color 
   margin-top: -6.5%;
   margin-left: 8%;
 }
@@ -412,14 +660,13 @@
 }
 
 #btns-right:hover {
-  color: white;                /* Optional hover effect */
-}
-
+  color: white;                /* Optional hover effect 
+}*/
 
 .main-headings{
   display: flex;
   flex-direction: row;
-  /*gap: 30%;*/
+  /*gap: 30%;
   margin-left: 10%;
   margin-top: -49.5%;
   
