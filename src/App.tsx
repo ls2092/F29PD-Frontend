@@ -3,6 +3,7 @@ import SideBarNav from './SideBarNav';
 import EnergyConsumed from './EnergyConsumed';
 import Settings from './SettingsPage';
 import Suggestions from './Suggestions';
+import AddDevice from './AddDevice';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<string>(window.location.hash || '#');
@@ -21,19 +22,15 @@ function App() {
   const renderPage = () => {
     switch (currentPage) {
       case '#Home':
-        return(
-          <>
-            
-            
-            <EnergyConsumed />
-          </>
-        );
+        return <EnergyConsumed />;
       case '#SettingsPage':
         return <Settings />;
       case '#Suggestions':
         return <Suggestions />;
       case '#EnergyConsumed':
         return <EnergyConsumed />;
+      case '#AddDevice':
+        return <AddDevice />;
       default:
         <SideBarNav />;
     }
