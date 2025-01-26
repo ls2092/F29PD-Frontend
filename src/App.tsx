@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import SideBarNav from './SideBarNav';
-import FamilyMembers from './FamilyMembers';
 import EnergyConsumed from './EnergyConsumed';
 import Settings from './SettingsPage';
 import Suggestions from './Suggestions';
@@ -25,7 +24,7 @@ function App() {
         return(
           <>
             
-            <FamilyMembers />
+            
             <EnergyConsumed />
           </>
         );
@@ -33,8 +32,6 @@ function App() {
         return <Settings />;
       case '#Suggestions':
         return <Suggestions />;
-      case '#FamilyMembers':
-        return <FamilyMembers />;
       case '#EnergyConsumed':
         return <EnergyConsumed />;
       default:
