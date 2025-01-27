@@ -6,6 +6,7 @@ import Suggestions from './Suggestions';
 import AddDevice from './AddDevice';
 import Automation from './Automation';
 import Login from './Login';
+import Info from './info';
 
 
 
@@ -38,8 +39,10 @@ function App() {
         return <AddDevice />;
       case '#Automation':
         return <Automation />;
+      case '#Info':
+        return <Info />;
       default:
-        <SideBarNav />;
+        return <EnergyConsumed />;
     }
   };
 
