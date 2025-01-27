@@ -5,7 +5,6 @@ import Settings from './SettingsPage';
 import Suggestions from './Suggestions';
 import AddDevice from './AddDevice';
 import Automation from './Automation';
-import Login from './Login';
 import Info from './info';
 import Profile from './profile';
 

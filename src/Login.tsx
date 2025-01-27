@@ -1,486 +1,433 @@
 import React, { useState } from 'react';
-import { Eye, EyeOff, Mail, Zap, ArrowLeft } from 'lucide-react';
-
-type Step = 'login' | 'register' | 'verify' | 'personal';
+import { Eye, EyeOff } from 'lucide-react';
+import './Login.css'
 
 function Login() {
-  const [currentStep, setCurrentStep] = useState<Step>('login');
+  const [currentStep, setCurrentStep] = useState(1);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     confirmPassword: '',
     firstName: '',
     lastName: '',
-    phoneNumber: '',
+    phone: '',
     gender: 'male',
-    birthDate: {
-      day: '',
-      month: '',
-      year: '',
-    },
+    birthDate: '',
     country: '',
     city: '',
     address: '',
   });
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [verificationCode, setVerificationCode] = useState(['', '', '', '', '']);
-  const [isVerified, setIsVerified] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [showEmailVerified, setShowEmailVerified] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
   };
 
-  const handleVerificationInput = (index: number, value: string) => {
-    if (value.length <= 1) {
-      const newCode = [...verificationCode];
-      newCode[index] = value;
-      setVerificationCode(newCode);
-      
-      if (value !== '' && index < 4) {
-        const nextInput = document.getElementById(`code-${index + 1}`);
-        nextInput?.focus();
-      }
+  const validateStep = () => {
+    const newErrors: Record<string, string> = {};
+
+    switch (currentStep) {
+      case 1:
+        if (!formData.email) {
+          newErrors.email = 'Email is required';
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+          newErrors.email = 'Please enter a valid email';
+        }
+        if (!formData.password) {
+          newErrors.password = 'Password is required';
+        }
+        break;
+      case 2:
+        if (!formData.email) newErrors.email = 'Email is required';
+        if (!formData.password) newErrors.password = 'Password is required';
+        if (!formData.confirmPassword) {
+          newErrors.confirmPassword = 'Please confirm your password';
+        } else if (formData.password !== formData.confirmPassword) {
+          newErrors.confirmPassword = 'Passwords do not match';
+        }
+        break;
+      case 4:
+        if (!formData.firstName) newErrors.firstName = 'First name is required';
+        if (!formData.lastName) newErrors.lastName = 'Last name is required';
+        if (!formData.phone) newErrors.phone = 'Phone number is required';
+        if (!formData.address) newErrors.address = 'Address is required';
+        break;
     }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (currentStep === 'login') {
-      // Handle login logic
-    } else if (currentStep === 'register') {
-      setCurrentStep('verify');
-    } else if (currentStep === 'verify') {
-      setIsVerified(true);
-      setCurrentStep('personal');
+    
+    if (!validateStep()) {
+      return;
+    }
+
+    if (currentStep === 3) {
+      // Show email verified message before proceeding
+      setShowEmailVerified(true);
+      setTimeout(() => {
+        setShowEmailVerified(false);
+        setCurrentStep(prev => prev + 1);
+      }, 2000);
+    } else if (currentStep < 4) {
+      setCurrentStep(prev => prev + 1);
     } else {
-      setShowSuccess(true);
+      setCurrentStep(5); // Show success message
     }
   };
 
-  const renderProgressBar = () => {
-    if (currentStep === 'login') return null;
-    const steps = ['register', 'verify', 'personal'];
-    const currentIndex = steps.indexOf(currentStep);
-    return (
-      <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
-        <div 
-          className="h-full bg-blue-500 transition-all duration-300"
-          style={{ width: `${((currentIndex + 1) / steps.length) * 100}%` }}
-        />
-      </div>
-    );
-  };
-
-  const renderLoginStep = () => (
-    <div className="space-y-6">
-      <div className="text-center">
-        <h2 className="text-3xl font-bold text-gray-900">Welcome,</h2>
-        <p className="mt-2 text-gray-600">Login or sign up</p>
-      </div>
-
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-          Enter your Email
-        </label>
-        <div className="mt-1 relative">
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            value={formData.email}
-            onChange={handleInputChange}
-            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Enter your Email"
-          />
-          <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-            <Mail className="h-5 w-5 text-gray-400" />
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-          Password
-        </label>
-        <div className="mt-1 relative">
-          <input
-            id="password"
-            name="password"
-            type={showPassword ? 'text' : 'password'}
-            required
-            value={formData.password}
-            onChange={handleInputChange}
-            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Enter your password"
-          />
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            className="absolute inset-y-0 right-0 pr-3 flex items-center"
-          >
-            {showPassword ? (
-              <EyeOff className="h-5 w-5 text-gray-400" />
-            ) : (
-              <Eye className="h-5 w-5 text-gray-400" />
-            )}
-          </button>
-        </div>
-      </div>
-
-      <button
-        type="submit"
-        className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
-      >
-        Login
-      </button>
-
-      <div className="text-center">
-        <p className="text-sm text-gray-600">
-          Don't have an account?{' '}
-          <button
-            type="button"
-            onClick={() => setCurrentStep('register')}
-            className="font-medium text-blue-500 hover:text-blue-600"
-          >
-            Register Now
-          </button>
-        </p>
-      </div>
-    </div>
-  );
-
-  const renderRegisterStep = () => (
-    <div className="space-y-6">
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-          Enter your Email
-        </label>
-        <div className="mt-1 relative">
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            value={formData.email}
-            onChange={handleInputChange}
-            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Enter your Email"
-          />
-          <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-            <Mail className="h-5 w-5 text-gray-400" />
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-          Password
-        </label>
-        <div className="mt-1 relative">
-          <input
-            id="password"
-            name="password"
-            type={showPassword ? 'text' : 'password'}
-            required
-            value={formData.password}
-            onChange={handleInputChange}
-            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Enter your password"
-          />
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            className="absolute inset-y-0 right-0 pr-3 flex items-center"
-          >
-            {showPassword ? (
-              <EyeOff className="h-5 w-5 text-gray-400" />
-            ) : (
-              <Eye className="h-5 w-5 text-gray-400" />
-            )}
-          </button>
-        </div>
-      </div>
-
-      <div>
-        <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
-          Confirm Password
-        </label>
-        <div className="mt-1 relative">
-          <input
-            id="confirmPassword"
-            name="confirmPassword"
-            type={showConfirmPassword ? 'text' : 'password'}
-            required
-            value={formData.confirmPassword}
-            onChange={handleInputChange}
-            className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Confirm your password"
-          />
-          <button
-            type="button"
-            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            className="absolute inset-y-0 right-0 pr-3 flex items-center"
-          >
-            {showConfirmPassword ? (
-              <EyeOff className="h-5 w-5 text-gray-400" />
-            ) : (
-              <Eye className="h-5 w-5 text-gray-400" />
-            )}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderVerificationStep = () => (
-    <div className="space-y-6">
-      <div className="text-center">
-        <h3 className="text-xl font-semibold">Verify Your Email</h3>
-        <p className="text-sm text-gray-600 mt-2">Please Enter The Code We Sent to your email</p>
-      </div>
-
-      <div className="flex justify-center gap-4">
-        {verificationCode.map((code, index) => (
-          <input
-            key={index}
-            id={`code-${index}`}
-            type="text"
-            maxLength={1}
-            value={code}
-            onChange={(e) => handleVerificationInput(index, e.target.value)}
-            className="w-12 h-12 text-center border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
-        ))}
-      </div>
-
-      <div className="text-center text-sm">
-        <span className="text-gray-600">I did not receive the code. </span>
-        <button className="text-blue-500 hover:text-blue-600 font-medium">
-          Resend the code
-        </button>
-      </div>
-    </div>
-  );
-
-  const renderPersonalDetailsStep = () => (
-    <div className="space-y-6">
-      <div>
-        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
-          Enter your First Name
-        </label>
-        <input
-          id="firstName"
-          name="firstName"
-          type="text"
-          required
-          value={formData.firstName}
-          onChange={handleInputChange}
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-        />
-      </div>
-
-      <div>
-        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
-          Enter your Last Name
-        </label>
-        <input
-          id="lastName"
-          name="lastName"
-          type="text"
-          required
-          value={formData.lastName}
-          onChange={handleInputChange}
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-        />
-      </div>
-
-      <div>
-        <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
-          Enter Phone Number
-        </label>
-        <input
-          id="phoneNumber"
-          name="phoneNumber"
-          type="tel"
-          required
-          value={formData.phoneNumber}
-          onChange={handleInputChange}
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700">Gender</label>
-        <div className="mt-2 space-x-4">
-          <label className="inline-flex items-center">
-            <input
-              type="radio"
-              name="gender"
-              value="male"
-              checked={formData.gender === 'male'}
-              onChange={handleInputChange}
-              className="form-radio text-blue-500"
-            />
-            <span className="ml-2">Male</span>
-          </label>
-          <label className="inline-flex items-center">
-            <input
-              type="radio"
-              name="gender"
-              value="female"
-              checked={formData.gender === 'female'}
-              onChange={handleInputChange}
-              className="form-radio text-blue-500"
-            />
-            <span className="ml-2">Female</span>
-          </label>
-        </div>
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700">Country</label>
-        <select
-          name="country"
-          value={formData.country}
-          onChange={handleInputChange}
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-        >
-          <option value="">Choose your country</option>
-          <option value="us">United States</option>
-          <option value="uk">United Kingdom</option>
-          <option value="ca">Canada</option>
-        </select>
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-gray-700">City</label>
-        <select
-          name="city"
-          value={formData.city}
-          onChange={handleInputChange}
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-        >
-          <option value="">Choose your city</option>
-          <option value="ny">New York</option>
-          <option value="la">Los Angeles</option>
-          <option value="ch">Chicago</option>
-        </select>
-      </div>
-
-      <div>
-        <label htmlFor="address" className="block text-sm font-medium text-gray-700">
-          Address
-        </label>
-        <textarea
-          id="address"
-          name="address"
-          value={formData.address}
-          onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
-          rows={3}
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-        />
-      </div>
-    </div>
-  );
-
-  return (
-    <div className="min-h-screen bg-gray-100 p-4">
-      {/* Logo in top right */}
-      <div className="absolute top-4 right-4 z-20">
-        <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-lg">
-          <span className="text-2xl font-bold">Sync</span>
-          <Zap className="h-6 w-6 text-blue-500 fill-blue-500" />
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto flex gap-8 items-center min-h-[calc(100vh-2rem)]">
-        {/* Left Box - Image */}
-        <div className="hidden lg:block lg:w-1/2">
-          <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-            <div className="relative">
-              <img
-                src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=1000&q=80"
-                alt="Smart home interface"
-                className="w-full h-[600px] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent">
-                <div className="absolute bottom-0 left-0 right-0 p-12">
-                  <h1 className="text-5xl font-bold text-white mb-4">
-                    <span className="text-blue-400">SYNC</span> your Home,
-                  </h1>
-                  <h2 className="text-4xl font-bold text-white">
-                    Save energy,
-                    <br />
-                    and live smarter.
-                  </h2>
-                </div>
-              </div>
+  const renderStep = () => {
+    switch (currentStep) {
+      case 1:
+        return (
+          <div className="container">
+            <div className="left-section">
+              <h1 className="hero-title">
+                <span>SYNC</span> your Home,<br />
+                Save energy,<br />
+                and live smarter.
+              </h1>
+              <p className="hero-subtitle">Control your home with our smart solutions</p>
+              <a href="#" className="signup-button" onClick={(e) => {
+                e.preventDefault();
+                setCurrentStep(2);
+              }}>Sign Up</a>
             </div>
-          </div>
-        </div>
-
-        {/* Right Box - Form */}
-        <div className="w-full lg:w-1/2">
-          <div className="bg-white rounded-3xl shadow-xl p-8">
-            <div className="max-w-md mx-auto">
-              {currentStep !== 'login' && (
-                <button
-                  onClick={() => setCurrentStep(currentStep === 'verify' ? 'register' : currentStep === 'personal' ? 'verify' : 'login')}
-                  className="mb-6 flex items-center text-gray-600 hover:text-gray-900"
-                >
-                  <ArrowLeft className="h-5 w-5 mr-2" />
-                  Back
-                </button>
-              )}
-
-              {renderProgressBar()}
-
-              <div className="my-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {currentStep === 'login' && renderLoginStep()}
-                  {currentStep === 'register' && renderRegisterStep()}
-                  {currentStep === 'verify' && renderVerificationStep()}
-                  {currentStep === 'personal' && renderPersonalDetailsStep()}
-
-                  {currentStep !== 'login' && (
-                    <button
-                      type="submit"
-                      className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
-                    >
-                      {currentStep === 'register' ? 'Next' : currentStep === 'verify' ? 'Verify' : 'Create Account'}
-                    </button>
-                  )}
+            <div className="right-section">
+              <div className="form-container">
+                <h2 className="form-title">Welcome,</h2>
+                <p className="form-subtitle">Login or sign up</p>
+                <form onSubmit={handleSubmit}>
+                  <div className="form-group">
+                    <label className="form-label">Enter your Email *</label>
+                    <input
+                      type="email"
+                      className={`form-input ${errors.email ? 'error' : ''}`}
+                      placeholder="Enter your Email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    {errors.email && <span className="error-message">{errors.email}</span>}
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Password *</label>
+                    <div className="password-input-container">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        className={`form-input ${errors.password ? 'error' : ''}`}
+                        placeholder="Enter your password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleInputChange}
+                        required
+                      />
+                      <span 
+                        className="password-toggle"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                      </span>
+                    </div>
+                    {errors.password && <span className="error-message">{errors.password}</span>}
+                  </div>
+                  <button type="submit" className="button">Login</button>
+                  <p className="text-center">
+                    Don't have an account? <a href="#" className="link" onClick={(e) => {
+                      e.preventDefault();
+                      setCurrentStep(2);
+                    }}>Register Now</a>
+                  </p>
                 </form>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        );
 
-      {/* Success Modal */}
-      {showSuccess && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-8 max-w-sm w-full mx-4">
-            <h3 className="text-2xl font-bold text-center text-gray-900 mb-4">
-              Account Created Successfully
-            </h3>
-            <button
-              onClick={() => setShowSuccess(false)}
-              className="w-full py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-            >
-              Get Started
-            </button>
+      case 2:
+        return (
+          <div className="container">
+            <div className="left-section">
+              <h1 className="hero-title">
+                <span>SYNC</span> your Home,<br />
+                Save energy,<br />
+                and live smarter.
+              </h1>
+              <p className="hero-subtitle">Control your home with our smart solutions</p>
+            </div>
+            <div className="right-section">
+              <div className="form-container">
+                <h2 className="form-title">Register</h2>
+                <p className="form-subtitle">Join us</p>
+                <div className="progress-bar">
+                  <div className="progress" style={{ width: '25%' }}></div>
+                </div>
+                <form onSubmit={handleSubmit}>
+                  <div className="form-group">
+                    <label className="form-label">Enter your Email *</label>
+                    <input
+                      type="email"
+                      className={`form-input ${errors.email ? 'error' : ''}`}
+                      placeholder="Enter your Email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    {errors.email && <span className="error-message">{errors.email}</span>}
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Password *</label>
+                    <div className="password-input-container">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        className={`form-input ${errors.password ? 'error' : ''}`}
+                        placeholder="Enter your password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleInputChange}
+                        required
+                      />
+                      <span 
+                        className="password-toggle"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                      </span>
+                    </div>
+                    {errors.password && <span className="error-message">{errors.password}</span>}
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Confirm Password *</label>
+                    <div className="password-input-container">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        className={`form-input ${errors.confirmPassword ? 'error' : ''}`}
+                        placeholder="Confirm your password"
+                        name="confirmPassword"
+                        value={formData.confirmPassword}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                    {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
+                  </div>
+                  <button type="submit" className="button">Next</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 3:
+        return (
+          <div className="container">
+            <div className="left-section">
+              <h1 className="hero-title">
+                <span>SYNC</span> your Home,<br />
+                Save energy,<br />
+                and live smarter.
+              </h1>
+              <p className="hero-subtitle">Control your home with our smart solutions</p>
+            </div>
+            <div className="right-section">
+              <div className="form-container">
+                <h2 className="form-title">Verify Your Email</h2>
+                <p className="form-subtitle">Please Enter The Code We Sent to your email</p>
+                <div className="progress-bar">
+                  <div className="progress" style={{ width: '50%' }}></div>
+                </div>
+                <form onSubmit={handleSubmit}>
+                  <div className="verification-code">
+                    {[1, 2, 3, 4, 5].map((_, index) => (
+                      <input
+                        key={index}
+                        type="text"
+                        maxLength={1}
+                        className="code-input"
+                        required
+                      />
+                    ))}
+                  </div>
+                  <p className="text-center">
+                    I did not receive the code. <a href="#" className="link">Resend the code</a>
+                  </p>
+                  <button type="submit" className="button">Next</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 4:
+        return (
+          <div className="container">
+            <div className="left-section">
+              <h1 className="hero-title">
+                <span>SYNC</span> your Home,<br />
+                Save energy,<br />
+                and live smarter.
+              </h1>
+              <p className="hero-subtitle">Control your home with our smart solutions</p>
+            </div>
+            <div className="right-section">
+              <div className="form-container">
+                <h2 className="form-title">Personal Details</h2>
+                <div className="progress-bar">
+                  <div className="progress" style={{ width: '75%' }}></div>
+                </div>
+                <form onSubmit={handleSubmit}>
+                  <div className="form-group">
+                    <label className="form-label">Enter your First Name *</label>
+                    <input
+                      type="text"
+                      className={`form-input ${errors.firstName ? 'error' : ''}`}
+                      placeholder="Enter your First Name"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    {errors.firstName && <span className="error-message">{errors.firstName}</span>}
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Enter your Last Name *</label>
+                    <input
+                      type="text"
+                      className={`form-input ${errors.lastName ? 'error' : ''}`}
+                      placeholder="Enter your Last Name"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    {errors.lastName && <span className="error-message">{errors.lastName}</span>}
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Phone Number *</label>
+                    <input
+                      type="tel"
+                      className={`form-input ${errors.phone ? 'error' : ''}`}
+                      placeholder="Enter phone number"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    {errors.phone && <span className="error-message">{errors.phone}</span>}
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Address *</label>
+                    <input
+                      type="text"
+                      className={`form-input ${errors.address ? 'error' : ''}`}
+                      placeholder="Enter your address"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    {errors.address && <span className="error-message">{errors.address}</span>}
+                  </div>
+                  <button type="submit" className="button">Next</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        );
+
+      default:
+        return (
+          <>
+            <div className="overlay">
+              <div className="account-created">
+                <h2>Account Created Successfully</h2>
+              </div>
+            </div>
+            <div className="container">
+              <div className="left-section">
+                <h1 className="hero-title">
+                  <span>SYNC</span> your Home,<br />
+                  Save energy,<br />
+                  and live smarter.
+                </h1>
+                <p className="hero-subtitle">Control your home with our smart solutions</p>
+              </div>
+              <div className="right-section">
+                <div className="form-container">
+                  <h2 className="form-title">Personal Details</h2>
+                  <div className="progress-bar">
+                    <div className="progress" style={{ width: '100%' }}></div>
+                  </div>
+                  <form>
+                    <div className="form-group">
+                      <label className="form-label">First Name</label>
+                      <input
+                        type="text"
+                        className="form-input"
+                        value={formData.firstName}
+                        disabled
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Last Name</label>
+                      <input
+                        type="text"
+                        className="form-input"
+                        value={formData.lastName}
+                        disabled
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Phone Number</label>
+                      <input
+                        type="tel"
+                        className="form-input"
+                        value={formData.phone}
+                        disabled
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Address</label>
+                      <input
+                        type="text"
+                        className="form-input"
+                        value={formData.address}
+                        disabled
+                      />
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </>
+        );
+    }
+  };
+
+  return (
+    <>
+      <div className="logo">Sync</div>
+      {renderStep()}
+      {showEmailVerified && (
+        <div className="overlay">
+          <div className="email-verified">
+            <h2>Email Verified Successfully</h2>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
 
