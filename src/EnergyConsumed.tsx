@@ -2,6 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faPowerOff, faGreaterThan, faBell, faPenToSquare, faCircleInfo} from '@fortawesome/free-solid-svg-icons';
 
 function EnergyConsumed() {
+    
+    const navigateTo = (hash: string) => {
+    window.location.hash = hash;
+    };
     return (
         <>
         <body>
@@ -11,13 +15,13 @@ function EnergyConsumed() {
             <div className="Header-btns">
                 <h1>Hello, Bob</h1>
                 <div className="btn-container">
-                    <button id="bell-btn">
+                    <button id="bell-btn" onClick={() => navigateTo('#Suggestions')}>
                         <FontAwesomeIcon icon={faBell} />
                     </button>
-                    <button id="edit-btn">
+                    <button id="edit-btn" onClick={() => navigateTo('#SettingsPage')}>
                         <FontAwesomeIcon icon={faPenToSquare} />
                     </button>
-                    <button id="info-btn">
+                    <button id="info-btn" onClick={() => navigateTo('#Info')}>
                         <FontAwesomeIcon icon={faCircleInfo} />
                     </button>
                 </div>        
@@ -68,21 +72,21 @@ function EnergyConsumed() {
                      <h2>Family Members</h2>
 
                     <div>
-                        <button>
+                        <button onClick={() => navigateTo('#SettingsPage')}>
                             <FontAwesomeIcon icon={faUser}/>
                             View Profile
                         </button>
                     </div>
 
                     <div>
-                        <button>
+                        <button onClick={() => navigateTo('#SettingsPage')}>
                             <FontAwesomeIcon icon={faUser}/>
                             View Profile
                         </button>
                     </div>
 
                     <div>
-                        <button>
+                        <button onClick={() => navigateTo('#SettingsPage')}>
                             <FontAwesomeIcon icon={faUser}/>
                             View Profile
                         </button>

@@ -32,7 +32,7 @@ function SideBarNav() {
               </div>
 
               <div>
-                <button>
+                <button onClick={() => navigateToPage('#Automation')}>
                   <FontAwesomeIcon icon={faClockRotateLeft} />
                 </button>
               </div>
