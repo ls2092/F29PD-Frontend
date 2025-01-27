@@ -26,7 +26,7 @@ function SideBarNav() {
               </div>
 
               <div>
-                <button>
+                <button onClick={() => navigateToPage('#AddDevice')}>
                   <FontAwesomeIcon icon={faPlug} />
                 </button>
               </div>
@@ -50,7 +50,7 @@ function SideBarNav() {
               </div>
 
               <div >
-                <button onClick={() => navigateToPage('#AddDevice')}>
+                <button>
                   <FontAwesomeIcon icon={faPlus} />
                 </button>
               </div>

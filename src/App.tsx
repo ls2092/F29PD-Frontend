@@ -7,9 +7,7 @@ import AddDevice from './AddDevice';
 import Automation from './Automation';
 import Login from './Login';
 import Info from './info';
-
-
-
+import Profile from './profile';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<string>(window.location.hash || '#');
@@ -41,6 +39,8 @@ function App() {
         return <Automation />;
       case '#Info':
         return <Info />;
+      case '#Profile':
+        return <Profile />
       default:
         return <EnergyConsumed />;
     }
