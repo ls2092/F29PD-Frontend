@@ -476,7 +476,7 @@ h1{
   font-weight: bold;
 }
 
-/*.header button{
+.header-btn button{
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
@@ -488,12 +488,12 @@ h1{
   cursor: pointer;
   transition: background-color 0.3s;
   margin-top: -2.6rem;
-  margin-left: 55rem;
+  margin-left: 38rem;
 }
 
-.header button:hover{
+.header-btn button:hover{
   background-color: #2563eb;
-}*/
+}
 
 .add-containers{
   display: flex;
@@ -547,6 +547,7 @@ h1{
   font-size: 1.2rem;
 }
 
+
 .button-A #right-btn{
   background-color: white;
   color: gray;
@@ -556,10 +557,46 @@ h1{
   transition: background-color 0.3s;
   cursor: pointer;
   border: none;
+  height: 2.5rem;
+  width: 2.5rem;
 }
 
+.del-btn button:hover,
 .button-A #right-btn:hover{
   background-color: #f3f4f6;
+}
+
+.del-btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.del-btn button{
+  background-color: white;
+  color: gray;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  margin-bottom: 1vh;
+  font-size: 1.2rem;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  border: none;
+}
+
+.text1 h3{
+  font-size: inherit;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.text1 h4{
+  font-size: 0.7rem;
+  color: rgb(107 114 128);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .instructions h2 {

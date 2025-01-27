@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faWifi, faWind, faLightbulb, faPlug} from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faWifi, faWind, faLightbulb, faPlug, faMinus} from '@fortawesome/free-solid-svg-icons';
 
 function AddDevice() {
     return (
@@ -8,6 +8,11 @@ function AddDevice() {
 
             <div className="add-H">
                 <h1>Add New Devices</h1>
+                <div className="header-btn">
+                    <button>
+                        <FontAwesomeIcon icon={faWifi} /> Scan for Devices
+                    </button>
+                </div>
             </div>
     
             <div className="add-containers">
@@ -24,7 +29,12 @@ function AddDevice() {
 
                     <div className="text1">
                         <h3>Air Conditioner</h3>
-                        <h4>Smart AC with temperature control</h4>
+                        <div className="del-btn">
+                            <h4>Smart AC with temperature control</h4>
+                            <button>
+                                <FontAwesomeIcon icon={faMinus} />
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -40,8 +50,13 @@ function AddDevice() {
                     </div>
 
                     <div className="text1">
-                        <h3>Air Conditioner</h3>
-                        <h4>Smart AC with temperature control</h4>
+                        <h3>Smart Light</h3>
+                        <div className="del-btn">
+                            <h4>Dimmable LED light bulb</h4>
+                            <button>
+                                <FontAwesomeIcon icon={faMinus} />
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -57,12 +72,18 @@ function AddDevice() {
                         </div>
 
                     <div className="text1">
-                        <h3>Air Conditioner</h3>
-                        <h4>Smart AC with temperature control</h4>
+                        <h3>Smart Plug</h3>
+                            <div className="del-btn">
+                                <h4>Energy Monitoring power outlet</h4>
+                                <button>
+                                    <FontAwesomeIcon icon={faMinus} />
+                                </button>
+                            </div>
                     </div>
                 </div>
+                </div>
 
-            </div>
+            
 
         <div className="instructions">
             <h2>Setup Instructions</h2>
