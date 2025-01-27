@@ -4,6 +4,7 @@ import EnergyConsumed from './EnergyConsumed';
 import Settings from './SettingsPage';
 import Suggestions from './Suggestions';
 import AddDevice from './AddDevice';
+import Automation from './Automation';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<string>(window.location.hash || '#');
@@ -31,6 +32,8 @@ function App() {
         return <EnergyConsumed />;
       case '#AddDevice':
         return <AddDevice />;
+      case '#Automation':
+        return <Automation />;
       default:
         <SideBarNav />;
     }
