@@ -4,6 +4,7 @@ import EnergyConsumed from './EnergyConsumed';
 import Settings from './SettingsPage';
 import Suggestions from './Suggestions';
 import AddDevice from './AddDevice';
+import Login from './Login';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<string>(window.location.hash || '#');
