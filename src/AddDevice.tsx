@@ -113,8 +113,24 @@ function AddDevice() {
     { id: 3, name: "Smart Plug", description: "Energy Monitoring power outlet", icon: faPlug },
   ]);
 
+  const [availableDevices, setAvailableDevices] = useState([
+    { id: 4, name: "Smart Fan", description: "Adjustable speed fan", icon: faWind },
+    { id: 5, name: "Smart Thermostat", description: "Temperature control system", icon: faLightbulb },
+    { id: 6, name: "Smart Heater", description: "Portable smart heater", icon: faPlug },
+  ]);
+
   const [showPopup, setShowPopup] = useState(false);
+  const [showPopUpScan, setShowPopUpScan] = useState(false);
   const [selectedDevice, setSelectedDevice] = useState(null);
+
+  const handleScanClick = () => {
+    setShowPopUpScan(true);
+  }
+
+  const handleDeviceSelection = (device) => {
+    setDevices([...devices, device]);
+    setShowPopUpScan(false);
+  }
 
   const handleDeleteClick = (device) => {
     setSelectedDevice(device);
@@ -138,7 +154,7 @@ function AddDevice() {
         <div className="add-H">
           <h1>Add New Devices</h1>
           <div className="header-btn">
-            <button>
+            <button onClick={handleScanClick}>
               <FontAwesomeIcon icon={faWifi} /> Scan for Devices
             </button>
           </div>
@@ -152,7 +168,7 @@ function AddDevice() {
                   <FontAwesomeIcon icon={device.icon} />
                 </button>
 
-                <button id="right-btn">
+                <button id="right-btn" onClick={handleScanClick}>
                   <FontAwesomeIcon icon={faPlus} />
                 </button>
               </div>
@@ -188,6 +204,25 @@ function AddDevice() {
               <div className="popup-buttons">
                 <button onClick={handleConfirmDelete}>Yes</button>
                 <button onClick={handleCancelDelete}>No</button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {showPopUpScan && (
+          <div className="popup-overlay">
+            <div className="popup">
+              <h3>Select a device to add</h3>
+              <div className="device-list">
+                {availableDevices.map((device) => (
+                  <button key={device.id} onClick={() => handleDeviceSelection(device)} className="device-btn">
+                    <FontAwesomeIcon icon={device.icon} />
+                    {device.name}
+                  </button>
+                ))}
+              </div>
+              <div className="popup-buttons">
+                <button onClick={() => setShowPopUpScan(false)}>Close</button>
               </div>
             </div>
           </div>

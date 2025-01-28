@@ -692,6 +692,21 @@ h1{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
+  .device-list {
+    margin: 20px 0;
+  }
+ 
+  .device-btn {
+    margin: 5px;
+    padding: 10px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    background-color: white;
+  }
+
   .popup-buttons button {
     margin: 0 10px;
     padding: 10px 20px;
