@@ -784,7 +784,7 @@ h1{
   .add-automation-button:hover {
     background-color: #008ecc; /* Darker blue on hover */
   }
-  /* Profile Page */
+  /* Profile Page 
 * {
   margin: 0;
   padding: 0;
@@ -797,14 +797,14 @@ body {
   color: #333;
 }
 
-/* Layout styles */
+/* Layout styles 
 .container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
 }
 
-/* Header styles */
+/* Header styles 
 .header {
   display: flex;
   align-items: center;
@@ -816,7 +816,7 @@ body {
   color: #333;
 }
 
-/* Main content styles */
+/* Main content styles 
 .main-content {
   width: 100%;
 }
@@ -858,7 +858,7 @@ body {
   font-size: 0.9rem;
 }
 
-/* Button styles */
+/* Button styles 
 .button {
   background-color: #00BFFF;
   color: white;
@@ -903,7 +903,7 @@ body {
   margin-top: 2rem;
 }
 
-/* Form styles */
+/* Form styles 
 .profile-form {
   max-width: 600px;
   margin: 0 auto;
@@ -956,7 +956,7 @@ body {
   color: white;
 }
 
-/* Success message */
+/* Success message 
 .success-message {
   background-color: #4caf50;
   color: white;
@@ -967,7 +967,7 @@ body {
   font-size: 0.9rem;
 }
 
-/* Back button */
+/* Back button 
 .back-button {
   display: flex;
   align-items: center;
@@ -985,7 +985,7 @@ body {
   color: #333;
 }
 
-/* Profile creation section */
+/* Profile creation section 
 .profile-creation {
   display: flex;
   gap: 2rem;
@@ -1024,4 +1024,4 @@ body {
   color: #666;
   font-size: 0.9rem;
   text-align: center;
-}
+}*/
