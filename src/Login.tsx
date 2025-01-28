@@ -433,7 +433,7 @@ function Login() {
 
 export default Login;*/
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './login.css'; // Import the CSS file
 
 interface LoginProps {
@@ -449,8 +449,20 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [address, setAddress] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const [showPopup, setShowPopup] = useState<boolean>(false); // For the pop-up
+
+  // Email validation regular expression
+  const isValidEmail = (email: string) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  };
 
   const handleLogin = () => {
+    if (!isValidEmail(email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+
     const storedUser = localStorage.getItem('user');
     if (!storedUser) {
       setError('User does not exist. Please register.');
@@ -471,16 +483,35 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       return;
     }
 
+    if (!isValidEmail(email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+
     if (password !== confirmPassword) {
       setError('Passwords do not match.');
       return;
     }
 
+    // Store user details in localStorage
     const user = { firstName, lastName, email, password, address };
     localStorage.setItem('user', JSON.stringify(user));
+
     setError('');
     setIsRegistering(false);
+    setShowPopup(true); // Show pop-up when account is created
   };
+
+  useEffect(() => {
+    if (showPopup) {
+      const timer = setTimeout(() => {
+        setShowPopup(false); // Automatically hide the pop-up after 1 second
+        setIsRegistering(false); // Switch back to the login form
+      }, 1000); // 1 second
+
+      return () => clearTimeout(timer); // Cleanup the timer if the component unmounts
+    }
+  }, [showPopup]);
 
   return (
     <div className="login-body">
@@ -553,8 +584,18 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             : 'Don’t have an account? Register'}
         </p>
       </div>
+
+      {/* Pop-up for successful registration */}
+      {showPopup && (
+        <div className="popup-login">
+          <div className="popup-content-login">
+            <p>Your account has been created successfully!</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default Login;
+
