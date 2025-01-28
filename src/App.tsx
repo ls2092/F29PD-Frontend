@@ -8,6 +8,7 @@ import Automation from './Automation';
 import Info from './info';
 import Profile from './profile';
 
+
 function App() {
   const [currentPage, setCurrentPage] = useState<string>(window.location.hash || '#');
 
