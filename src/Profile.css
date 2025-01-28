@@ -1,41 +1,26 @@
-/* Reset and base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
-}
-
-/* Layout styles */
-.container {
+/* Profile Page Specific Styles */
+.profile-page-wrapper {
   max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
 }
 
-/* Header styles */
-.header {
+.profile-header-section {
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
 }
 
-.page-title {
+.profile-page-title {
   font-size: 1.5rem;
   color: #333;
 }
 
-/* Main content styles */
-.main-content {
+.profile-main-content {
   width: 100%;
 }
 
-.profile-card {
+.profile-info-card {
   background-color: white;
   border-radius: 16px;
   padding: 2rem;
@@ -43,54 +28,36 @@ body {
   margin-bottom: 2rem;
 }
 
-.profile-header {
+.profile-header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.profile-info {
+.profile-user-info {
   display: flex;
   align-items: center;
   gap: 2rem;
 }
 
-.profile-avatar {
+.profile-user-avatar {
   width: 80px;
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.profile-details h2 {
+.profile-user-details h2 {
   margin-bottom: 0.25rem;
   font-size: 1.25rem;
 }
 
-.profile-details p {
+.profile-user-details p {
   color: #666;
   font-size: 0.9rem;
 }
 
-/* Button styles */
-.button {
-  background-color: #00BFFF;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.2s;
-  font-weight: 500;
-  width: 100%;
-}
-
-.button:hover {
-  background-color: #00ace6;
-}
-
-.header-button {
+.profile-action-button {
   background-color: #00BFFF;
   color: white;
   border: none;
@@ -102,11 +69,11 @@ body {
   font-weight: 500;
 }
 
-.header-button:hover {
+.profile-action-button:hover {
   background-color: #00ace6;
 }
 
-.button-group {
+.profile-button-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
@@ -117,17 +84,16 @@ body {
   margin-top: 2rem;
 }
 
-/* Form styles */
-.profile-form {
+.profile-form-container {
   max-width: 600px;
   margin: 0 auto;
 }
 
-.form-group {
+.profile-form-group {
   margin-bottom: 1.5rem;
 }
 
-.form-group label {
+.profile-form-group label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
@@ -135,7 +101,7 @@ body {
   font-size: 0.9rem;
 }
 
-.form-group input {
+.profile-form-input {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #e0e0e0;
@@ -144,18 +110,18 @@ body {
   transition: border-color 0.2s;
 }
 
-.form-group input:focus {
+.profile-form-input:focus {
   outline: none;
   border-color: #00BFFF;
 }
 
-.profile-type-selector {
+.profile-type-toggle {
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
 }
 
-.profile-type-button {
+.profile-type-toggle-button {
   padding: 0.5rem 1.5rem;
   border: none;
   border-radius: 20px;
@@ -165,13 +131,12 @@ body {
   transition: all 0.2s;
 }
 
-.profile-type-button.active {
+.profile-type-toggle-button.active {
   background-color: #00BFFF;
   color: white;
 }
 
-/* Success message */
-.success-message {
+.profile-success-message {
   background-color: #4caf50;
   color: white;
   padding: 1rem;
@@ -181,8 +146,7 @@ body {
   font-size: 0.9rem;
 }
 
-/* Back button */
-.back-button {
+.profile-back-button {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -195,21 +159,20 @@ body {
   background: none;
 }
 
-.back-button:hover {
+.profile-back-button:hover {
   color: #333;
 }
 
-/* Profile creation section */
-.profile-creation {
+.profile-creation-layout {
   display: flex;
   gap: 2rem;
 }
 
-.profile-creation-form {
+.profile-form-section {
   flex: 2;
 }
 
-.profile-avatar-section {
+.profile-avatar-upload {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -217,7 +180,7 @@ body {
   margin-top: 4rem;
 }
 
-.avatar-placeholder {
+.profile-avatar-dropzone {
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -228,13 +191,13 @@ body {
   margin-bottom: 1rem;
 }
 
-.avatar-placeholder svg {
+.profile-avatar-dropzone svg {
   color: #00BFFF;
   width: 40px;
   height: 40px;
 }
 
-.avatar-label {
+.profile-avatar-label {
   color: #666;
   font-size: 0.9rem;
   text-align: center;

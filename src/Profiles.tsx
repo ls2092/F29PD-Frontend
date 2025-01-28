@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronLeft, Plus } from 'lucide-react';
+import './profile.css';
 
 interface Profile {
   firstName: string;
@@ -48,85 +49,85 @@ function Profile() {
   };
 
   return (
-    <div className="container">
+    <div className="profile-page-wrapper">
       {!showCreateProfile ? (
         <>
-          <div className="header">
-            <h1 className="page-title">My Profile</h1>
+          <div className="profile-header-section">
+            <h1 className="profile-page-title">My Profile</h1>
           </div>
 
-          <main className="main-content">
+          <main className="profile-main-content">
             {profileCreated && (
-              <div className="success-message">Profile created successfully!</div>
+              <div className="profile-success-message">Profile created successfully!</div>
             )}
 
-            <div className="profile-card">
-              <div className="profile-header">
-                <div className="profile-info">
+            <div className="profile-info-card">
+              <div className="profile-header-container">
+                <div className="profile-user-info">
                   <img 
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&fit=crop"
                     alt="Profile"
-                    className="profile-avatar"
+                    className="profile-user-avatar"
                   />
-                  <div className="profile-details">
+                  <div className="profile-user-details">
                     <h2>Bob</h2>
                     <p>bobby_bobberson@hotmail.net</p>
                   </div>
                 </div>
                 <div>
-                  <button className="header-button">Edit Profile</button>
-                  <button className="header-button" style={{ marginLeft: '1rem' }}>Logout</button>
+                  <button className="profile-action-button">Edit Profile</button>
+                  <button className="profile-action-button" style={{ marginLeft: '1rem' }}>Logout</button>
                 </div>
               </div>
             </div>
 
-            <div className="button-group">
-              <button className="button" onClick={() => setShowCreateProfile(true)}>Create Profile</button>
-              <button className="button">View Analytics</button>
-              <button className="button">Manage Profile's</button>
-              <button className="button">View Energy Consumption</button>
-              <button className="button">Manage Access</button>
-              <button className="button">Historical Data</button>
+            <div className="profile-button-grid">
+              <button className="profile-action-button" onClick={() => setShowCreateProfile(true)}>Create Profile</button>
+              <button className="profile-action-button">View Analytics</button>
+              <button className="profile-action-button">Manage Profile's</button>
+              <button className="profile-action-button">View Energy Consumption</button>
+              <button className="profile-action-button">Manage Access</button>
+              <button className="profile-action-button">Historical Data</button>
             </div>
           </main>
         </>
       ) : (
         <>
-          <div className="header">
-            <h1 className="page-title">Create Profile</h1>
+          <div className="profile-header-section">
+            <h1 className="profile-page-title">Create Profile</h1>
           </div>
 
-          <main className="main-content">
+          <main className="profile-main-content">
             <button 
-              className="back-button"
+              className="profile-back-button"
               onClick={() => setShowCreateProfile(false)}
             >
               <ChevronLeft size={20} />
-              Create Profile
+              Back to Profile
             </button>
 
-            <div className="profile-card">
-              <div className="profile-creation">
-                <div className="profile-creation-form">
-                  <form onSubmit={handleSubmit} className="profile-form">
-                    <div className="profile-type-selector">
+            <div className="profile-info-card">
+              <div className="profile-creation-layout">
+                <div className="profile-form-section">
+                  <form onSubmit={handleSubmit} className="profile-form-container">
+                    <div className="profile-type-toggle">
                       <button
                         type="button"
-                        className={`profile-type-button ${profile.type === 'Child' ? 'active' : ''}`}
+                        className={`profile-type-toggle-button ${profile.type === 'Child' ? 'active' : ''}`}
                         onClick={() => setProfile(prev => ({ ...prev, type: 'Child' }))}
                       >
                         Child
                       </button>
                       <button
                         type="button"
-                        className={`profile-type-button ${profile.type === 'Adult/Elderly' ? 'active' : ''}`}
+                        className={`profile-type-toggle-button ${profile.type === 'Adult/Elderly' ? 'active' : ''}`}
                         onClick={() => setProfile(prev => ({ ...prev, type: 'Adult/Elderly' }))}
                       >
                         Adult/Elderly
                       </button>
                     </div>
 
-                    <div className="form-group">
+                    <div className="profile-form-group">
                       <label htmlFor="firstName">First Name</label>
                       <input
                         type="text"
@@ -134,11 +135,12 @@ function Profile() {
                         name="firstName"
                         value={profile.firstName}
                         onChange={handleInputChange}
+                        className="profile-form-input"
                         required
                       />
                     </div>
 
-                    <div className="form-group">
+                    <div className="profile-form-group">
                       <label htmlFor="lastName">Last Name</label>
                       <input
                         type="text"
@@ -146,11 +148,12 @@ function Profile() {
                         name="lastName"
                         value={profile.lastName}
                         onChange={handleInputChange}
+                        className="profile-form-input"
                         required
                       />
                     </div>
 
-                    <div className="form-group">
+                    <div className="profile-form-group">
                       <label htmlFor="email">Email Address</label>
                       <input
                         type="email"
@@ -158,11 +161,12 @@ function Profile() {
                         name="email"
                         value={profile.email}
                         onChange={handleInputChange}
+                        className="profile-form-input"
                         required
                       />
                     </div>
 
-                    <div className="form-group">
+                    <div className="profile-form-group">
                       <label htmlFor="age">Age</label>
                       <input
                         type="number"
@@ -170,11 +174,12 @@ function Profile() {
                         name="age"
                         value={profile.age}
                         onChange={handleInputChange}
+                        className="profile-form-input"
                         required
                       />
                     </div>
 
-                    <div className="form-group">
+                    <div className="profile-form-group">
                       <label htmlFor="energyGoal">Energy Saving Goal</label>
                       <input
                         type="text"
@@ -182,16 +187,17 @@ function Profile() {
                         name="energyGoal"
                         value={profile.energyGoal}
                         onChange={handleInputChange}
+                        className="profile-form-input"
                         placeholder="Enter kWh"
                         required
                       />
                     </div>
 
                     <div style={{ display: 'flex', gap: '1rem' }}>
-                      <button type="submit" className="button">Save</button>
+                      <button type="submit" className="profile-action-button">Save</button>
                       <button 
                         type="button" 
-                        className="button"
+                        className="profile-action-button"
                         onClick={() => setShowCreateProfile(false)}
                         style={{ backgroundColor: '#f44336' }}
                       >
@@ -201,11 +207,11 @@ function Profile() {
                   </form>
                 </div>
 
-                <div className="profile-avatar-section">
-                  <div className="avatar-placeholder">
+                <div className="profile-avatar-upload">
+                  <div className="profile-avatar-dropzone">
                     <Plus />
                   </div>
-                  <span className="avatar-label">Select Profile Avatar</span>
+                  <span className="profile-avatar-label">Select Profile Avatar</span>
                 </div>
               </div>
             </div>
