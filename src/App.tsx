@@ -4,9 +4,11 @@ import EnergyConsumed from './EnergyConsumed';
 import Settings from './SettingsPage';
 import Suggestions from './Suggestions';
 import AddDevice from './AddDevice';
+import Profile from './Profiles';
 import Automation from './Automation';
 import Info from './info';
-import Profile from './profile';
+
+
 
 
 function App() {

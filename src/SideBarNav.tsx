@@ -56,7 +56,7 @@ function SideBarNav() {
               </div>
 
               <div >
-                <button>
+                <button onClick={() => navigateToPage('#Profile')}>
                  <FontAwesomeIcon icon={faUser} />
                 </button>
               </div>
