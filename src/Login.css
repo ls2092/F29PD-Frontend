@@ -18,11 +18,17 @@
   border-radius: 5rem;
   padding: 8px;
   background: linear-gradient(90deg, #00BAFF, #004EFF);
-  color: #EA8C00;
+  color: #ff9900;
   text-align: center;
   font: 600 32px Plus Jakarta Sans, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 20px;
   z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 186, 255, 0.3);
 }
 
 .login-card {

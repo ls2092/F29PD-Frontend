@@ -133,7 +133,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
         return (
     <div className="login-page">
-      <div className="logo">Sync</div>
+      <div className="logo">Sy<span className="orange-text">n</span>c</div>
       <div className="login-card">
         <div className="left-side" style={{ backgroundImage: getBackgroundImage() }}>
           <div className="hero-content">
