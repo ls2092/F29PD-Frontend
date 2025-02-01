@@ -68,9 +68,11 @@ import Profile from './Profiles';
 import Automation from './Automation';
 import Info from './info';
 import Login from './Login';
+import SetPin from './Pin';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isPinVerified, setIsPinVerified] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<string>(window.location.hash || '#');
 
   useEffect(() => {
@@ -107,6 +109,10 @@ function App() {
 
   if (!isAuthenticated) {
     return <Login onLogin={() => setIsAuthenticated(true)} />;
+  }
+
+  if (!isPinVerified) {
+    return <SetPin onPinVerified={() => setIsPinVerified(true)} />;
   }
 
   return (
