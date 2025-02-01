@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './login.css'; // Import the CSS file
+import './Login.css'; // Import the CSS file
 import { Eye, EyeOff } from 'lucide-react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
