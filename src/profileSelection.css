@@ -1,0 +1,66 @@
+/* ProfileSelection.css */
+
+  
+  .container-s {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .s-cont{
+    
+  }
+  
+  .selection-h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: black;
+  }
+  
+  .profile-grid {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .selection-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .selection-button img {
+    width: 120px; /* Adjust size */
+    height: 120px;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .selection-button span {
+    display: block;
+    margin-top: 10px;
+    font-size: 1rem;
+    color: black;
+  }
+  
+  .add-profile-container button:hover,
+  .selection-button:hover img {
+    transform: scale(1.1);
+    border: 2px solid red;
+  }
+  
+  .add-profile-container{
+   
+  }
+
+  .add-profile-container button{
+    width: 120px; /* Adjust size */
+    height: 120px;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    font-size: 8vh;
+  }
