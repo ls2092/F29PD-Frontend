@@ -37,8 +37,9 @@ function SideBarNav() {
                 </button>
               </div>
 
+
               <div >
-                <button>
+                <button onClick={() => navigateToPage('#Statistics')}>
                   <FontAwesomeIcon icon={faChartLine} />
                 </button>
               </div>

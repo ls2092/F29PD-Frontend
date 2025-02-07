@@ -69,6 +69,7 @@ import Automation from './Automation';
 import Info from './info';
 import Login from './Login';
 import SetPin from './Pin';
+import Statistics from './Statistics';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -98,6 +99,8 @@ function App() {
         return <AddDevice />;
       case '#Automation':
         return <Automation />;
+      case '#Statistics':
+        return <Statistics />;
       case '#Info':
         return <Info />;
       case '#Profile':
